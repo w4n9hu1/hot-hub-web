@@ -1,12 +1,12 @@
 # 📈热点话题榜
 
-实时追踪热点话题，一站式查看与搜索历史话题。
+![search_page](https://github.com/user-attachments/assets/29f71c87-b3a7-463b-a1f4-7642d3c806b5)
 
 ## 框架
 
 - [Next.js](https://nextjs.org/)
 
-## 数据
+## 爬虫 & 数据库
 
 - [hot-hub-scraper](https://github.com/w4n9hu1/hot-hub-scraper)
 - [Supabase - PostgreSQL](https://supabase.com/)
@@ -16,7 +16,7 @@
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
 
-## CI/CD & 部署 / Deployment
+## CI/CD & 部署
 
 - [Vercel](https://vercel.com/)
 - [Cloudflare](https://www.cloudflare.com/)
