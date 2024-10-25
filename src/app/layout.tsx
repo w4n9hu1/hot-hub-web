@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "发现话题 - 热点话题榜",
@@ -27,6 +28,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-grow px-4">
             {children}
+            <Analytics />
           </main>
           <Footer />
         </div>
