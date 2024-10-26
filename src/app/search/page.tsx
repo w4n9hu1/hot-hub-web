@@ -20,6 +20,9 @@ export default async function Page({ searchParams }: {
     return (
         <div className="flex flex-col gap-8">
             <p className="text-lg font-bold">{searchParams.query} - 搜索结果:</p>
+            {
+                relatedTopics.length === 0 && <p>暂无相关话题。</p>
+            }
             <TrendBarChart chartData={topicTrends} />
             <div className="flex flex-col gap-4">
                 {

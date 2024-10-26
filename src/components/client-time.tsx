@@ -1,5 +1,6 @@
 'use client'
 
+import { format } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 export default function ClientTime({ datetime }: { datetime: Date }) {
@@ -7,7 +8,7 @@ export default function ClientTime({ datetime }: { datetime: Date }) {
     const [dateTimeString, setDateTimeString] = useState<string>("");
 
     useEffect(() => {
-        setDateTimeString(datetime.toLocaleString());
+        setDateTimeString(format(datetime, "yyyy/MM/dd"));
     }, [datetime]);
 
     return (

@@ -20,8 +20,11 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function TrendBarChart({ chartData }: { chartData: TopicTrends[] }) {
-    const maxYValue = Math.ceil(Math.max(...chartData.map((item) => item.hots)) / 1000) * 1000;
+    if (chartData.filter(d => d.hots != 0).length === 0) {
+        return null;
+    }
 
+    const maxYValue = Math.ceil(Math.max(...chartData.map((item) => item.hots)) / 1000) * 1000;
     return (
         <div>
             <ChartContainer config={chartConfig} className="w-full h-[260px]">
