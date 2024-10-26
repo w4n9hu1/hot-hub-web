@@ -1,5 +1,6 @@
-import { queryBytitle } from "@/lib/db";
-import { QueryTopicResult } from "@/lib/type";
+import { GradientChart } from "@/components/area-chart";
+import { getTopicTrends, queryBytitle } from "@/lib/db";
+import { QueryTopicResult, TopicTrends } from "@/lib/type";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -14,10 +15,12 @@ export default async function Page({ searchParams }: {
 }) {
 
     const relatedTopics: QueryTopicResult[] = await queryBytitle({ query: searchParams.query });
+    const topicTrends: TopicTrends[] = await getTopicTrends({ query: searchParams.query });
 
     return (
         <div className="flex flex-col gap-8">
             <p className="text-lg font-bold">{searchParams.query} - 搜索结果:</p>
+            <GradientChart chartData={topicTrends} />
             <div className="flex flex-col gap-4">
                 {
                     relatedTopics.map((topic, index) => (

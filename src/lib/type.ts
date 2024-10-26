@@ -21,3 +21,8 @@ export type QueryTopicResult = {
     icons: string;
     tags: string;
 };
+
+export type TopicTrends = {
+    date: Date;
+    hots: number;
+};
