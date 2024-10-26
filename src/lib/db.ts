@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { QueryTopicResult, WbHotTopic, WbHotTopicDetail } from "@/lib/type";
+import { QueryTopicResult, TopicTrends, WbHotTopic, WbHotTopicDetail } from "@/lib/type";
 import { Pool } from "pg";
 
 const pool = new Pool({
@@ -181,4 +181,48 @@ async function getDataMetrics(): Promise<dataMetrics> {
     }
 }
 
-export { getRecentTopics, getTopicByTitle, queryBytitle, getDataMetrics };
+async function getTopicTrends({ query }: { query: string }): Promise<TopicTrends[]> {
+
+    const cacheKey = `${queryBytitle}_${query}`;
+    const now = Date.now();
+
+    if (cache[cacheKey] && now - cache[cacheKey].timestamp < CACHE_DURATION) {
+        return cache[cacheKey].data;
+    }
+
+    const client = await pool.connect();
+    try {
+        const querySql = `SELECT 
+    dates.date,
+    COALESCE(FLOOR(max(hot) / 1000.0), 0) AS hots
+FROM 
+    generate_series(
+        DATE_TRUNC('day', NOW() - INTERVAL '1 year'), 
+        DATE_TRUNC('day', NOW()), 
+        INTERVAL '1 day'
+    ) AS dates(date)
+LEFT JOIN 
+    wb_hot ON DATE_TRUNC('day', wb_hot.created_at) = dates.date
+          AND title LIKE $1
+          AND tag != 'top'
+GROUP BY 
+    dates.date
+ORDER BY 
+    dates.date;
+`;
+        const result = await client.query<TopicTrends>(querySql, [`%${query}%`]);
+
+        cache[cacheKey] = {
+            data: result.rows,
+            timestamp: now,
+        };
+
+        return result.rows;
+    } catch (e) {
+        throw e;
+    } finally {
+        client.release();
+    }
+}
+
+export { getRecentTopics, getTopicByTitle, queryBytitle, getDataMetrics, getTopicTrends };
