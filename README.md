@@ -1,6 +1,6 @@
 # 📈热点话题榜
 
-![search_page](https://github.com/user-attachments/assets/29f71c87-b3a7-463b-a1f4-7642d3c806b5)
+![frame_chrome_mac_light](https://github.com/user-attachments/assets/68342838-7c54-481c-a2e8-23d0295d52e7)
 
 ## 框架
 
