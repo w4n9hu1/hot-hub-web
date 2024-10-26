@@ -194,7 +194,7 @@ async function getTopicTrends({ query }: { query: string }): Promise<TopicTrends
     try {
         const querySql = `SELECT 
     dates.date,
-    COALESCE(FLOOR(SUM(hot) / 1000.0), 0) AS hots
+    COALESCE(FLOOR(max(hot) / 1000.0), 0) AS hots
 FROM 
     generate_series(
         DATE_TRUNC('day', NOW() - INTERVAL '1 year'), 

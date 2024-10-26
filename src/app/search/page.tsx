@@ -1,4 +1,4 @@
-import { GradientChart } from "@/components/area-chart";
+import { TrendBarChart } from "@/components/bar-chart";
 import { getTopicTrends, queryBytitle } from "@/lib/db";
 import { QueryTopicResult, TopicTrends } from "@/lib/type";
 import { Metadata } from "next";
@@ -20,7 +20,7 @@ export default async function Page({ searchParams }: {
     return (
         <div className="flex flex-col gap-8">
             <p className="text-lg font-bold">{searchParams.query} - 搜索结果:</p>
-            <GradientChart chartData={topicTrends} />
+            <TrendBarChart chartData={topicTrends} />
             <div className="flex flex-col gap-4">
                 {
                     relatedTopics.map((topic, index) => (
