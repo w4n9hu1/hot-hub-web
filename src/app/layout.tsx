@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import { Analytics } from "@vercel/analytics/react"
+import { GoogleAnalytics } from '@next/third-parties/google'
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
           <main className="flex-grow px-4">
             {children}
             <Analytics />
+            <GoogleAnalytics gaId={"G-" + process.env.GA_TRACKING_ID} />
           </main>
           <Footer />
         </div>
