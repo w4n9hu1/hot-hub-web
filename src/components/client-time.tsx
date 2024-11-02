@@ -8,7 +8,7 @@ export default function ClientTime({ datetime }: { datetime: Date }) {
     const [dateTimeString, setDateTimeString] = useState<string>("");
 
     useEffect(() => {
-        setDateTimeString(format(datetime, "yyyy/MM/dd"));
+        setDateTimeString(format(datetime, "yyyy/MM/dd HH:mm:ss"));
     }, [datetime]);
 
     return (
