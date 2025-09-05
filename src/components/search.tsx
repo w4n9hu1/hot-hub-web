@@ -30,10 +30,10 @@ export default function Search() {
                         onChange={(e) => setQuery(e.target.value)}
                         value={query}
                         type="search"
-                        placeholder="搜索话题..."
-                        className="py-2 pl-10 pr-4 border rounded-md border-muted"
+                        placeholder="🔍 搜索话题..."
+                        className="py-3 pl-12 pr-4 border rounded-xl border-muted/50 bg-background/50 backdrop-blur-sm hover:border-muted transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
                     />
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                         <SearchIcon className="w-5 h-5 text-muted-foreground" />
                     </div>
                 </div>
